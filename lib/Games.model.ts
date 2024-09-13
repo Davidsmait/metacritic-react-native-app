@@ -71,3 +71,19 @@ export interface LatestGame {
   title: string;
   image: string;
 }
+
+interface GameReview {
+  quote: string;
+  score: number;
+  date: string;
+  publicationName: string;
+  author: string;
+}
+export interface GameDetails {
+  img: string;
+  title: string;
+  slug: string;
+  description: string;
+  score: number;
+  reviews: GameReview[];
+}
