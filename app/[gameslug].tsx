@@ -1,8 +1,9 @@
-import { Text, View } from "react-native";
-import { Link, useLocalSearchParams } from "expo-router";
+import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { Link, Stack, useLocalSearchParams } from "expo-router";
 import { getGameDetails } from "../lib/metacritic";
 import { useEffect, useState } from "react";
 import { GameDetails } from "../lib/Games.model";
+import { Screen } from "../components/Screen";
 
 export default function Detail() {
   const { gameslug } = useLocalSearchParams();
@@ -18,14 +19,27 @@ export default function Detail() {
     fetchDetails();
   }, []);
   return (
-    <View>
-      <Link href="/" className="text-blue-500/90">
-        Atras
-      </Link>
-      <Text className="font-bold text-2xl mb-8 text-white">
-        {details.title}
-      </Text>
-    </View>
+    <Screen>
+      <Stack.Screen
+        options={{
+          headerStyle: { backgroundColor: "#ffee00" },
+          headerTintColor: "black",
+          headerLeft: () => {},
+          headerTitle: gameslug,
+          headerRight: () => {},
+        }}
+      ></Stack.Screen>
+
+      {details.title == null ? (
+        <ActivityIndicator color="#fff" size={"large"} />
+      ) : (
+        <ScrollView>
+          <Text className="text-white">Detalle del juego {gameslug}</Text>
+          <Text className="font-bold text-2xl mb-8 text-white">
+            {details.score}
+          </Text>
+        </ScrollView>
+      )}
+    </Screen>
   );
 }
-

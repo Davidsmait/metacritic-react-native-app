@@ -13,6 +13,7 @@ import { Logo } from "./Logo";
 import { Link } from "expo-router";
 import { InfoIcon } from "./Icons";
 import { styled } from "nativewind";
+import { Screen } from "./Screen";
 
 export function Main() {
   const insets = useSafeAreaInsets();
@@ -28,20 +29,7 @@ export function Main() {
   }, []);
 
   return (
-    <View style={{ paddingTop: insets.top }}>
-      <View style={styles.header}>
-        <Logo />
-        {games.length === 0 ? (
-          <></>
-        ) : (
-          <Link asChild href="/about" className="text-blue-500">
-            <StyledPressable className={`active:opacity-80`}>
-              <InfoIcon />
-            </StyledPressable>
-          </Link>
-        )}
-      </View>
-
+    <Screen>
       {games.length === 0 ? (
         <ActivityIndicator color={"white"} />
       ) : (
@@ -55,7 +43,7 @@ export function Main() {
           />
         </>
       )}
-    </View>
+    </Screen>
   );
 }
 

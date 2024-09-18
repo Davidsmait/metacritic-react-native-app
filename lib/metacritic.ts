@@ -7,7 +7,6 @@ export async function getLatestGames(): Promise<LatestGame[]> {
 
   const rawData = await fetch(LATEST_GAMES);
   const json = await rawData.json();
-  console.log("json", json);
   const {
     data: { items },
   } = json;
@@ -38,8 +37,10 @@ export async function getGameDetails(slug): Promise<GameDetails> {
   const rawData = await fetch(GAME_DETAILS);
   const json = await rawData.json();
 
+  console.log("json details:", json);
   const { components } = json;
-  const { title, description, criticScoreSummary, images } = components[0];
+  const { title, description, criticScoreSummary, images } =
+    components[0].detail.item;
   const { score } = criticScoreSummary;
 
   // get the card image

@@ -17,7 +17,7 @@ export function GameCard({ game }) {
     <Link asChild href={`/${game.slug}`}>
       <StyledPressable
         style={styles.cardContainer}
-        className=" bg-slate-500/10 active:opacity-80 border active:border-amber-200"
+        className=" bg-slate-500/20 active:opacity-80 border active:border-amber-200"
       >
         <View className="" style={styles.card}>
           <Image source={{ uri: game.image }} style={[styles.image]} />
